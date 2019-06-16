@@ -1,14 +1,61 @@
 const path = require('path')
 const express = require('express')
-const app = express()
-const publicDirectoryPath = path.join(__dirname, '../public')
+const hbs = require('hbs')
 
+const app = express()
+// Define paths for express config
+const publicDirectoryPath = path.join(__dirname, '../public')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
+// Setup handlebars engine and views location
+app.set('view engine', 'hbs')
+app.set('views', viewsPath)
+hbs.registerPartials(partialsPath)
+// Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
+
+app.get('', (req, res) => {
+  res.render('index', {
+    title: 'Weather',
+    name: 'Ily Trevino'
+  })
+})
+
+app.get('/about', (req, res) => {
+  res.render('about', {
+    title: 'About me',
+    name: 'Ily Trevino'
+  })
+})
+
+app.get('/help', (req, res) => {
+  res.render('help', {
+    title: 'Help',
+    name: 'Ily Trevino',
+    helpText: 'This is some helpful text'
+  })
+})
 
 app.get('/weather', (req, res) => {
   res.send({
     forecast: 'It is snowing',
     location: 'Philadelphia'
+  })
+})
+
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title: '404',
+    name: 'Ily Trevino',
+    errorMessage: 'Help article not found'
+  })
+})
+
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: '404',
+    name: 'Ily Trevino',
+    errorMessage: 'Page not found'
   })
 })
 
