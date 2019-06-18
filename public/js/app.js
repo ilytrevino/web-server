@@ -8,7 +8,6 @@ const messageTwo = document.querySelector('#message-2')
 
 weatherForm.addEventListener('submit', (e) => {
   e.preventDefault()
-  console.log(navigator.location)
 
   const location = search.value
 
@@ -36,12 +35,16 @@ currentLocation.addEventListener('click', (e) => {
     alert("Geolocation is not supported by this browser.")
   }
 
-  function showPosition(position) {
-    console.log("Latitude: " + position.coords.latitude)
-    console.log("Longitude: " + position.coords.longitude)
-    fetch('/weather?latitude=' + position.coords.latitude + '&longitude=' + position.coords.longitude).then((response) => {
+
+  function showPosition (position) {
+    const latitude = position.coords.latitude
+    const longitude = position.coords.longitude
+
+    messageOne.textContent = 'Loading...'
+    messageTwo.textContent = ''
+
+    fetch('/weather?latitude=' + latitude + '&longitude=' + longitude).then((response) => {
       response.json().then((data) => {
-        console.log(data)
         if (data.error) {
           messageOne.textContent = data.error
         } else {
