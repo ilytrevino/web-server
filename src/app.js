@@ -27,16 +27,16 @@ app.get('', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.render('about', {
-    title: 'About me',
+    title: 'About this PWA',
     name: 'Ily Trevino'
   })
 })
 
-app.get('/help', (req, res) => {
-  res.render('help', {
-    title: 'Help',
+app.get('/contact', (req, res) => {
+  res.render('contact', {
+    title: 'Contact',
     name: 'Ily Trevino',
-    helpText: 'This is some helpful text'
+    helpText: "Hi! Would you like to know more about me?"
   })
 })
 
@@ -100,7 +100,7 @@ app.get('/products', (req, res) => {
   })
 })
 
-app.get('/help/*', (req, res) => {
+app.get('/contact/*', (req, res) => {
   res.render('404', {
     title: '404',
     name: 'Ily Trevino',

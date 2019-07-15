@@ -14,6 +14,11 @@ body {
   flex-grow: 1;
 }
 
+a {
+  color: #4688F1;
+  text-decoration: none;
+}
+
 footer {
   color: #888888;
   border-top: 1px solid #eeeeee;
@@ -37,8 +42,19 @@ h1 {
   margin-bottom: 16px;
 }
 
-.portrait {
-  width: 250px;
+.contact {
+  width: 30px;
+}
+
+.contact-links {
+  display: flex;
+  margin: 10px 0;
+}
+
+.contact-links a {
+  color: #4688F1;
+  margin: auto 10px;
+  text-decoration: none;
 }
 
 input {
@@ -52,4 +68,5 @@ button {
   background: #888888;
   color: white;
   padding: 8px;
+  margin: 6px 0;
 }
